@@ -60,26 +60,12 @@ function activate() {}
 register_activation_hook( __FILE__, 'pinfo\activate' );
 
 /**
- * Registers scripts that are only needed on admin pages
- * @since 1.0.0
- */
-function register_admin_scripts() {
-
-    
-
-}
-
-add_action( 'admin_enqueue_scripts', 'pinfo\register_admin_scripts' );
-
-/**
  * Enqueue scripts on front end
  * @since 1.0.0
  */
 function enqueue_scripts() {
 
-    wp_enqueue_style( 'pinfo-style', asset( 'css/style.css' ), null, VERSION );
-    
-    wp_enqueue_script( 'action-js', asset( 'js/action.js' ), array( 'jquery' ), VERSION );       
+    wp_enqueue_style( 'pinfo-style', asset( 'css/style.css' ), null, VERSION );   
                 
 }
 
@@ -103,36 +89,3 @@ function asset( $path = '', $url = true ) {
     return $file . 'assets/' . ltrim( $path, '/' );
 
 }
-/**
- * Get the path of a template file.
- *
- * @param  string      $template The file name in the format of file.php.
- * @return bool|string           False if the file does not exist, the path if it does.
- */
-function template_path( $template ) {
-
-    $template = trim( $template, '/' );
-    $template = rtrim( $template, '.php' );
-
-    $base = trailingslashit( dirname( __FILE__ ) . '/templates' );
-
-    $file = $base . $template . '.php';
-
-    if( file_exists( $file ) ) {
-        return $file;
-    }
-
-    return false;
-
-}
-/**
- * Returns the plugin path from this file (root)
- * @since 1.0.0
- * @return type string   Path of root plugin
- */
-function root_path() {
-    return plugin_dir_path(__FILE__);
-}
-
-
-
