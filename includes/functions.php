@@ -41,7 +41,7 @@ function do_version() {
 
     $data = json_decode( $body );
     
-    echo 'Current Version: ' . $data->version;
+    echo $data->version;
     
     return ob_get_clean();
     
@@ -90,7 +90,9 @@ function do_downloads() {
 
     $data = json_decode( $body );
     
-    echo 'Total Downloads: ' . $data->downloaded;
+    $downloads = number_format( $data->downloaded );
+    
+    echo $downloads;
 
     return ob_get_clean();
     
